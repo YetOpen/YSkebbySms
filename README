@@ -1,0 +1,84 @@
+DESCRIPTION
+===========
+YiiFramework extension that helps you send SMS messages using Skebby API with only one line of code.
+You need a Skebby subscription to send messages.
+
+Derived from: https://github.com/vladvelici/ClickatellSms
+
+INSTALLATION
+============
+1. Copy the YSkebbySms folder to your *extensions* folder (usually in protected/extensions/)
+   If you prefeer to clone,
+    git clone https://github.com/YetOpen/YSkebbySms.git protected/extensions/YSkebbySms
+2. In configuration, add the following component:
+
+'components' => array(
+	...
+	'skebbySms' => array(
+		'class'=>'ext.YSkebbySms.YSkebbySms',
+		'username'=>'your Skebby user',
+		'password'=>'your Skebby password',
+	),
+	...
+);
+There are a few more settings available.
+
+3. Send messages as follows:
+$result = Yii::app()->skebbySms->send([per-sms configurations]);
+if ($result['result'])
+    echo "Message sent";
+else {
+    echo "Message NOT sent: ".$result['message'];
+}
+
+USAGE EXAMPLE
+=============
+Yii::app()->skebbySms->send(array('to'=>'xxxxxx','message'=>'hello world'));
+Yii::app()->skebbySms->getCredit();
+
+CONFIGURATIONS
+==============
+
+All configurations can be set at sending time, but I recommend to set as much as you can in the component configuration. Also, setting too many options at sending time may slow down the process.
+
+List of available configurations:
+
+to			Mobile phone no to send the SMS to. It can be an array with more numbers.
+message			The message.
+smsId			An optional SMS ID to be used with the callback or message status requests. Check the Clickatell docs for cliMsgId for more.
+skebby_username	Clickatell username.
+skebby_password	Clickatell password.
+https			Default is TRUE. Whether to use a secure connection (https) or http.
+debug			Default is FALSE. Whether to print debug information on screen. Useful when testing from console.
+
+REQUIREMENTS
+============
+
+ * cURL
+ * Tested only with YiiFramework v1.1.8
+
+LINKS
+=====
+
+http://yiiframework.com
+http://www.skebby.it/business/index/send-docs/
+http://www.skebby.it/business/index/code-examples/
+
+AUTHOR
+======
+This extension was developed by Lorenzo Milesi <maxxer@yetopen.it>.
+Inspired on ClickatellSms extension by Vlad Velici.
+http://www.yetopen.it/
+
+
+LICENCE
+=======
+
+This extension is free software released under the terms of the following BSD Licence:
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+Neither the name of Yii Software LLC nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
