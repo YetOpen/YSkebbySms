@@ -84,12 +84,12 @@ class YSkebbySms extends CApplicationComponent {
         }
 
         $params = array(
-            'username' => urlencode($this->username),
-            'password' => urlencode($this->password),
-            'method' => urlencode(($this->test?self::TEST_PREFIX:"").$this->method),
-            'sender_string' => urlencode($this->sender_string),
-            'recipients[]' => urlencode($this->to), // FIXME
-            'text' => urlencode($this->message),
+            'username' => $this->username,
+            'password' => $this->password,
+            'method' => ($this->test?self::TEST_PREFIX:"").$this->method,
+            'sender_string' => $this->sender_string,
+            'recipients[]' => $this->to, // FIXME
+            'text' => $this->message,
         );
         // Send the request
         $this->skebbyRequest($params);
