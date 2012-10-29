@@ -22,6 +22,10 @@ class YSkebbySms extends CApplicationComponent {
     const TYPE_BASIC = 'send_sms_basic';
     const TEST_PREFIX = 'test_';
 
+    const CREDIT_TYPE_CREDIT = "credit_left";
+    const CREDIT_TYPE_CLASSIC = "classic_sms";
+    const CREDIT_TYPE_BASIC = "basic_sms";
+
     /** @var mixed Skebby action. */
     public $method = self::TYPE_CLASSIC;
 
@@ -75,7 +79,7 @@ class YSkebbySms extends CApplicationComponent {
     /**
      * Sends the SMS request to Clickatell gateway. 
      * @param array $config A key=>value array to configure the message
-     * @return mixed String with the clickatell SMS ID if it succeeds or FALSE if it fails
+     * @return bool Whether the action was successful
      */
     public function send($config) {
         // Runtime configuration
@@ -94,6 +98,34 @@ class YSkebbySms extends CApplicationComponent {
         // Send the request
         $this->skebbyRequest($params);
         return $this->_return;
+    }
+
+    /**
+     * Get Skebby credit (remaining SMSes)
+     * @param string $type Type of credit to get. If missing returns an array with all available credits
+     * @param array $config A key=>value array to configure the message
+     * @return mixed If successful the number of remainig messages, bool FALSE on faluire
+     */
+    public function getCredit($type = NULL, $config = NULL) {
+        // Runtime configuration
+        if ($config != NULL) {
+            foreach ($config as $k => $v) {
+                $this->$k = $v;
+            }
+        }
+
+        $params = array(
+            'username' => $this->username,
+            'password' => $this->password,
+            'method' => "get_credit",
+        );
+        // Send the request
+        if ($this->skebbyRequest($params) === FALSE)
+            return FALSE;
+        if ($type == NULL)
+            return $this->_return;
+        else
+            return $this->_return[$type];
     }
 
     /**

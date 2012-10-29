@@ -32,7 +32,10 @@ else {
 USAGE EXAMPLE
 =============
 Yii::app()->skebbySms->send(array('to'=>'xxxxxx','message'=>'hello world'));
-Yii::app()->skebbySms->getCredit();
+
+Yii::app()->skebbySms->getCredit(YSkebbySms::CREDIT_TYPE_BASIC);
+The first parameter is the return type, can be empty to return all your credits, or a specific type.
+The second can be the same config used for the send, except for the method which will be overwritten.
 
 CONFIGURATIONS
 ==============
