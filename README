@@ -3,8 +3,6 @@ DESCRIPTION
 YiiFramework extension that helps you send SMS messages using Skebby API with only one line of code.
 You need a Skebby subscription to send messages.
 
-Derived from: https://github.com/vladvelici/ClickatellSms
-
 INSTALLATION
 ============
 1. Copy the YSkebbySms folder to your *extensions* folder (usually in protected/extensions/)
@@ -43,19 +41,19 @@ All configurations can be set at sending time, but I recommend to set as much as
 
 List of available configurations:
 
-to			Mobile phone no to send the SMS to. It can be an array with more numbers.
+to			    Mobile phone number to send the SMS to.
 message			The message.
-smsId			An optional SMS ID to be used with the callback or message status requests. Check the Clickatell docs for cliMsgId for more.
-skebby_username	Clickatell username.
-skebby_password	Clickatell password.
-https			Default is TRUE. Whether to use a secure connection (https) or http.
+username	    Skebby username.
+password	    Skebby password.
+ssl			    Default is FALSE. Whether to use a secure connection (https) or http.
 debug			Default is FALSE. Whether to print debug information on screen. Useful when testing from console.
+test			Default is FALSE. Whether to do only a test delivery, not really sending the message.
 
 REQUIREMENTS
 ============
 
  * cURL
- * Tested only with YiiFramework v1.1.8
+ * Tested only with YiiFramework v1.1.10
 
 LINKS
 =====
