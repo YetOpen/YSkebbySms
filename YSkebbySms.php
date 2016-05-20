@@ -12,7 +12,7 @@
  * When a clickatell request fails, errors are loggeg with 'warning' trace and 'ext.clickatell' category
  * This class does not validate any SMS parameters, not even the phone no.
  */
-class YSkebbySms extends CApplicationComponent {
+class YSkebbySms extends \yii\base\Component {
 
     const CHARSET_UTF8 = 'UTF-8';
     const CHARSET_ISO = 'ISO-8859-1';
